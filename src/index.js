@@ -29,18 +29,9 @@ client.on('messageCreate', (message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if (command === 'ping') {
-        client.commands.get('ping').execute(message, args);
-
-    } else if (command === 'roll') {
+    if (command === 'roll') {
         client.commands.get('roll').execute(message, args);
-
-    } else if (command === 'purge') {
-        client.commands.get('purge').execute(message, args);
-
-    } else if (command === 'userinfo') {
-        client.commands.get('userinfo').execute(message, args, client)
-    }
+    } 
 
 });
 
