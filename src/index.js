@@ -31,7 +31,10 @@ client.on('messageCreate', (message) => {
 
     if (command === 'roll') {
         client.commands.get('roll').execute(message, args);
-    } 
+
+    } else if (command === 'userinfo' || 'ui') {
+        client.commands.get('userinfo').execute(message, args, client)
+    }
 
 });
 
