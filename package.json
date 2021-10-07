@@ -2,9 +2,7 @@
   "name": "rollbot",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
-  "scripts": {
-  },
+  "main": "./src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KhalilSacranie/RollBot.git"
