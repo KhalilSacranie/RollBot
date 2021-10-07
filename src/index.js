@@ -1,9 +1,7 @@
 const { Client, Intents, Collection } = require('discord.js');
-require('dotenv').config({ path: 'src/.env' });
-const token = process.env.BOT_TOKEN;
-const prefix = process.env.PREFIX;
 const fs = require('fs');
 
+const prefix = '!'
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -35,4 +33,4 @@ client.on('messageCreate', (message) => {
 
 });
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
