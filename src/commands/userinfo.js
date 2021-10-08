@@ -7,7 +7,7 @@ module.exports = {
         const user = message.mentions.users.first() || message.author;
         const joinDiscord = moment(user.createdAt).format('llll');
         const joinServer = moment(user.joinedAt).format('llll');
-        // const roleID = user.roles.highest.id
+        // const roleID = user.roles.highest.id;
         const UserInfoEmbed = new MessageEmbed()
             .setColor(user.displayHexColor)
             .setTitle(user.tag)

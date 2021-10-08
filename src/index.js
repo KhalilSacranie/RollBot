@@ -32,11 +32,14 @@ client.on('messageCreate', (message) => {
     if (command === 'roll') {
         client.commands.get('roll').execute(message, args);
 
-    } else if (command === 'userinfo' || 'ui') {
+    } else if (command === 'userinfo') {
         client.commands.get('userinfo').execute(message, args, client)
 
-    } else if (command === 'tst') {
-        client.commands.get('tst').execute(message, args, client)
+    } else if (command === 'stats') {
+        client.commands.get('stats').execute(message, args, client)
+
+    } else if (command === 'updatestats') {
+        client.commands.get('updatestats').execute(message, args, client)
         
     }
 
