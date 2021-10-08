@@ -34,6 +34,10 @@ client.on('messageCreate', (message) => {
 
     } else if (command === 'userinfo' || 'ui') {
         client.commands.get('userinfo').execute(message, args, client)
+
+    } else if (command === 'tst') {
+        client.commands.get('tst').execute(message, args, client)
+        
     }
 
 });

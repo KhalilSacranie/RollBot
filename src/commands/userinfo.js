@@ -7,7 +7,7 @@ module.exports = {
         const user = message.mentions.users.first() || message.author;
         const joinDiscord = moment(user.createdAt).format('llll');
         const joinServer = moment(user.joinedAt).format('llll');
-        const roleID = user.roles.highest.id
+        // const roleID = user.roles.highest.id
         const UserInfoEmbed = new MessageEmbed()
             .setColor(user.displayHexColor)
             .setTitle(user.tag)
@@ -19,7 +19,7 @@ module.exports = {
                 { name: ':date: Joined This Guild:', value: joinServer },
                 { name: ':date: Joined Discord:', value: joinDiscord },
                 { name: ':robot: Bot:', value: String(user.bot) },
-                { name: ':crown: Highest Role:', value: `<@&${roleID}>` },
+                // { name: ':crown: Highest Role:', value: `<@&${roleID}>` },
                 { name: 'Nitro:', value: String(user.premiumSince) },
             )
             .setFooter('Created by Khalil Sacranie')
