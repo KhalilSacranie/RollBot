@@ -1,5 +1,3 @@
-const { MessageEmbed } = require('discord.js');
-
 module.exports = {
     name: 'tst',
     execute(message, args, client) {
