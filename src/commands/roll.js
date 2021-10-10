@@ -17,11 +17,12 @@ module.exports = {
         const answer = String(getRandomIntInclusive(num1, num2))
 
         const Embed = new MessageEmbed()
-	        .setColor(message.author.accentColor)
+	        .setColor(message.member.displayHexColor)
 	        .setTitle('Number:')
 	        .setDescription(answer)
 	        .setTimestamp()
 
         message.channel.send({ embeds: [Embed] });
+        console.log(String(message.author.tag) + ' rolled a ' + answer)
     }
 }
