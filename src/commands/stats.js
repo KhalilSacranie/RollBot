@@ -48,19 +48,18 @@ module.exports = {
             return;
 
         } else {
-            fs.readFile('../data/data.json', 'utf-8', (err, jsonString) => {
-                try {
-                    try {
-                        const data = JSON.parse(jsonString);
-                        console.log(data.content);
-
-                    } catch (err) {
-                        console.log(err);
-                    }
-
-                } catch (err) {
+            fs.readFile('src/data/statSheet.json', 'utf-8', (err, jsonString) => {
+                if (err) {
                     console.log(err);
 
+                } else {
+                    try {
+                        const data = JSON.parse(jsonString);
+                        message.channel.send(data)
+
+                    } catch (err) {
+                        console.log(err)
+                    }
                 }
             });
         }
