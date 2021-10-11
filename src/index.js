@@ -1,9 +1,9 @@
 const { Client, Intents, Collection } = require('discord.js');
 const fs = require('fs');
 
-require('dotenv').config()
-const token = process.env.TOKEN
-const prefix = process.env.PREFIX
+require('dotenv').config();
+const token = process.env.TOKEN;
+const prefix = process.env.PREFIX;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -33,15 +33,18 @@ client.on('messageCreate', (message) => {
         client.commands.get('roll').execute(message, args);
 
     } else if (command === 'userinfo') {
-        client.commands.get('userinfo').execute(message, args, client)
+        client.commands.get('userinfo').execute(message, args, client);
 
     } else if (command === 'stats') {
-        client.commands.get('stats').execute(message, args, client)
+        client.commands.get('stats').execute(message, args, client);
 
-    } else if (command === 'updatestats') {
-        client.commands.get('updatestats').execute(message, args, client)
-        
-    }
+    } else if (command === 'weapons') {
+        client.commands.get('weapons').execute(message, args, client);
+
+    } else if (command === 'spells') {
+        client.commands.get('spells').execute(message, args, client);
+
+    } 
 
 });
 
