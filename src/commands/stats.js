@@ -7,7 +7,7 @@ module.exports = {
         const accessid = ['543084123460337675', '460200007522320394'];
 
         if (args[0] === 'update') {
-            if (message.author.id === '543084123460337675') {
+            if (message.author.id === '543084123460337675', '460200007522320394') {
                 if(!args[1]) {
                     message.reply('Please enter the link for the new stat sheet.');
 
