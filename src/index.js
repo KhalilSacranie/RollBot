@@ -44,7 +44,10 @@ client.on('messageCreate', (message) => {
     } else if (command === 'spells') {
         client.commands.get('spells').execute(message, args, client);
 
-    } 
+    } else if (command === 'terminate') {
+        client.commands.get('terminate').execute(message, args, client);
+
+    }
 
 });
 
