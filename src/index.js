@@ -1,4 +1,4 @@
-const { Client, Intents, Collection } = require('discord.js');
+const { Client, Intents, Collection, Guild } = require('discord.js');
 const fs = require('fs');
 
 require('dotenv').config();
@@ -47,7 +47,7 @@ client.on('messageCreate', (message) => {
     } else if (command === 'terminate') {
         client.commands.get('terminate').execute(message, args, client);
 
-    }
+    } 
 
 });
 
