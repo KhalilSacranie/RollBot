@@ -47,7 +47,9 @@ client.on('messageCreate', (message) => {
     } else if (command === 'terminate') {
         client.commands.get('terminate').execute(message, args, client);
 
-    } 
+    } else if (command === 'a') {
+        message.guild.channels.create('Khalil\'s Punishment Exercise', {type: "voice",})
+    }
 
 });
 
