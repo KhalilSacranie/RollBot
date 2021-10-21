@@ -2,27 +2,28 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'roll',
-    execute(message, args) {
-        function getRandomIntInclusive(min, max) {
-            min = Math.min(min, max);
-            max = Math.max(max, min);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+    execute(message, args, client) {
+        function getRandomIntInclusive(max) {
+            return Math.floor(Math.random() * (max)) + 1;
         }
-    
-        let num1 = args[0];
-        let num2 = args[1];
-        if(!num1) return message.reply("Please enter a first number");
-        if(!num2) return message.reply("Please enter a second number");
 
-        const answer = String(getRandomIntInclusive(num1, num2))
+        var a = new Array(args[0]);
+        for (var i = 0; i < args[0]; i++) {
+            a[i] = i + 1;
+        }
+        for (var i = 0; i < a.length; i++) {
+            let num1 = args[1];
+            if (!num1) return message.reply("Please enter how many faces the dice will have.");
 
-        const Embed = new MessageEmbed()
-	        .setColor(message.member.displayHexColor)
-	        .setTitle('Number:')
-	        .setDescription(answer)
-	        .setTimestamp()
+            const answer = String(getRandomIntInclusive(num1))
 
-        message.channel.send({ embeds: [Embed] });
-        console.log(String(message.author.tag) + ' rolled a ' + answer)
+            const Embed = new MessageEmbed()
+                .setColor(message.author.accentColor)
+                .setTitle('Number:')
+                .setDescription(answer)
+                .setTimestamp()
+
+            message.channel.send({ embeds: [Embed] });
+        }
     }
 }
