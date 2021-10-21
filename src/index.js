@@ -49,7 +49,8 @@ client.on('messageCreate', (message) => {
 
     } else if (command === 'scream') {
         message.channel.send('http://imgur.com/gallery/0BpqqmW');
-    }
+
+    } 
 
 });
 

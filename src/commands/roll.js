@@ -15,7 +15,7 @@ module.exports = {
             let num1 = args[1];
             if (!num1) return message.reply("Please enter how many faces the dice will have.");
 
-            const answer = String(getRandomIntInclusive(num1))
+            const answer = String(getRandomIntInclusive(num1));
 
             const Embed = new MessageEmbed()
                 .setColor(message.author.accentColor)
