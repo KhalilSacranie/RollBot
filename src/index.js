@@ -1,9 +1,11 @@
 const { Client, Intents, Collection, Guild } = require('discord.js');
 const fs = require('fs');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
+const srv = process.env.SRV
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -47,11 +49,30 @@ client.on('messageCreate', (message) => {
     } else if (command === 'terminate') {
         client.commands.get('terminate').execute(message, args, client);
 
-    } else if (command === 'scream') {
-        message.channel.send('http://imgur.com/gallery/0BpqqmW');
+    } else if (command === 'createlore') {
+        client.commands.get('createlore').execute(message, args, client);
 
-    } 
+    } else if (command === 'lore') {
+        client.commands.get('lore').execute(message, args, client);
+        
+    } else if (command === 'deletelore') {
+        client.commands.get('deletelore').execute(message, args, client);
+        
+    } else if (command === 'purge') {
+        client.commands.get('purge').execute(message, args, client);
+        
+    }
 
 });
+
+mongoose.connect(srv, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useFindAndModify: false,
+}).then(() => {
+    console.log('Connected to the database.')
+}).catch((err) => {
+    console.error(err)
+})
 
 client.login(token);
