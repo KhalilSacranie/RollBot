@@ -1,50 +1,37 @@
-const fs = require('fs');
+require('dotenv').config({ path: '.env' });
+const ownerID = process.env.OWNERID;
+
+const sheetsModel = require('../models/sheetsSchema');
 
 module.exports = {
     name: 'weapons',
-    execute(message, args, client) {
+    async execute(message, args, client) {
+        sheetData = await sheetsModel.findOne({ sheetID: 'weaponsSheet' });
 
-        if (args[0] === 'update') {
-            if (message.author.id === '543084123460337675', '460200007522320394') {
-                if(!args[1]) {
-                    message.reply('Please enter the link for the new weapon sheet.');
+        try {
+            if (args[0] === 'update') {
+                if (message.author.id === (ownerID || '460200007522320394')) {
+                    if (args[1]) {
+                        var newLink = args[1];
+                        sheetData.link = newLink;
+                        await sheetData.save();
+
+                        message.reply(`The new stat sheet is ${sheetData.link}`);
+                        console.log(`${message.author.username} update the stats to ${sheetData.link}.`);
+
+                    } else {
+                        message.reply('Please enter the new statsheet\' https.');
+                    }
 
                 } else {
-                    const link = args[1];
-                    const newWeaponSheet = {
-                        name: 'weaponSheet',
-                        content: link,
-                    };
-
-                    fs.writeFile('src/data/weaponSheet.json', JSON.stringify(newWeaponSheet), err => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log('New weapon sheet successfully saved!')
-                        }
-                    });
+                    message.reply(' You do not have permission to use this command.');
                 }
 
             } else {
-                message.reply('You do not have permission to do that!');
-                return;
+                message.channel.send(sheetData.link);
             }
-
-        } else {
-            fs.readFile('src/data/weaponSheet.json', 'utf-8', (err, jsonString) => {
-                if (err) {
-                    console.log(err);
-
-                } else {
-                    try {
-                        const weaponSheet = JSON.parse(jsonString);
-                        message.channel.send(weaponSheet);
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }
-            });
+        } catch (err) {
+                console.error(err);
         }
-
     }
 }

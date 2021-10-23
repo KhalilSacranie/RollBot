@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 }
 
 
-client.once('ready', () => {
+client.once('ready', async () => {
     console.log('Ready!');
 });
 

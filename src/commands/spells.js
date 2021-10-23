@@ -1,50 +1,38 @@
-const fs = require('fs');
+require('dotenv').config({ path: '.env' });
+const ownerID = process.env.OWNERID;
+
+const sheetsModel = require('../models/sheetsSchema');
 
 module.exports = {
     name: 'spells',
-    execute(message, args, client) {
+    async execute(message, args, client) {
+        sheetData = await sheetsModel.findOne({ sheetID: 'spellSheet' });
 
-        if (args[0] === 'update') {
-            if (message.author.id === '543084123460337675', '460200007522320394') {
-                if(!args[1]) {
-                    message.reply('Please enter the link for the new spell sheet.');
+        try {
+            if (args[0] === 'update') {
+                if (message.author.id === (ownerID || '460200007522320394')) {
+                    if (args[1]) {
+                        var newLink = args[1];
+                        sheetData.link = newLink;
+                        await sheetData.save();
+
+                        message.reply(`The new stat sheet is ${sheetData.link}`);
+                        console.log(`${message.author.username} update the stats to ${sheetData.link}.`);
+
+                    } else {
+                        message.reply('Please enter the new statsheet\' https.');
+                    }
 
                 } else {
-                    const link = args[1];
-                    const newSpellSheet = {
-                        name: 'spellSheet',
-                        content: link,
-                    };
-
-                    fs.writeFile('src/data/spellSheet.json', JSON.stringify(newSpellSheet), err => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log('New spell sheet successfully saved!')
-                        }
-                    });
+                    message.reply(' You do not have permission to use this command.');
                 }
 
             } else {
-                message.reply('You do not have permission to do that!');
-                return;
+                message.channel.send(sheetData.link);
             }
 
-        } else {
-            fs.readFile('src/data/spellSheet.json', 'utf-8', (err, jsonString) => {
-                if (err) {
-                    console.log(err);
-
-                } else {
-                    try {
-                        const spellSheet = JSON.parse(jsonString);
-                        message.channel.send(spellSheet);
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }
-            });
+        } catch (err) {
+            console.error(err);
         }
-
     }
 }

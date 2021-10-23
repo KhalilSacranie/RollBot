@@ -1,52 +1,38 @@
-const fs = require('fs');
+require('dotenv').config({ path: '.env' });
+const ownerID = process.env.OWNERID;
+
+const sheetsModel = require('../models/sheetsSchema');
 
 module.exports = {
     name: 'stats',
-    execute(message, args, client) {
+    async execute(message, args, client) {
+        sheetData = await sheetsModel.findOne({ sheetID: 'statSheet' });
 
-        const accessid = ['543084123460337675', '460200007522320394'];
+        try {
+            if (args[0] === 'update') {
+                if (message.author.id === (ownerID || '460200007522320394')) {
+                    if (args[1]) {
+                        var newLink = args[1];
+                        sheetData.link = newLink;
+                        await sheetData.save();
 
-        if (args[0] === 'update') {
-            if (message.author.id === '543084123460337675', '460200007522320394') {
-                if(!args[1]) {
-                    message.reply('Please enter the link for the new stat sheet.');
+                        message.reply(`The new stat sheet is ${sheetData.link}`);
+                        console.log(`${message.author.username} update the stats to ${sheetData.link}.`);
+
+                    } else {
+                        message.reply('Please enter the new statsheet\' https.');
+                    }
 
                 } else {
-                    const link = args[1];
-                    const newStatSheet = {
-                        name: 'statSheet',
-                        content: link,
-                    };
-
-                    fs.writeFile('src/data/statSheet.json', JSON.stringify(newStatSheet), err => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log('New stat sheet successfully saved!')
-                        }
-                    });
+                    message.reply(' You do not have permission to use this command.');
                 }
 
             } else {
-                message.reply('You do not have permission to do that!');
-                return;
+                message.channel.send(sheetData.link);
             }
 
-        } else {
-            fs.readFile('src/data/statSheet.json', 'utf-8', (err, jsonString) => {
-                if (err) {
-                    console.log(err);
-
-                } else {
-                    try {
-                        const statSheet = JSON.parse(jsonString);
-                        message.channel.send(statSheet);
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }
-            });
+        } catch (err) {
+            console.error(err);
         }
-
     }
 }
