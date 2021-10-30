@@ -22,6 +22,7 @@ for (const file of commandFiles) {
 
 client.once('ready', async () => {
     console.log('Ready!');
+    client.channels.cache.get('901549373173948427').send('<@543084123460337675> Bot is now online.')
 });
 
 client.on('messageCreate', (message) => {
@@ -61,7 +62,7 @@ client.on('messageCreate', (message) => {
     } else if (command === 'purge') {
         client.commands.get('purge').execute(message, args, client);
         
-    }
+    } 
 
 });
 
