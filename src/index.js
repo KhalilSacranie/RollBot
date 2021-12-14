@@ -19,6 +19,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+console.clear();
 
 client.once('ready', async () => {
     console.log('Ready!');
