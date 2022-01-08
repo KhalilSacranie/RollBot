@@ -18,7 +18,7 @@ module.exports = {
             const answer = String(getRandomIntInclusive(num1));
 
             const Embed = new MessageEmbed()
-                .setColor(message.author.accentColor)
+                .setColor(message.member.displayHexColor)
                 .setTitle('Number:')
                 .setDescription(answer)
                 .setTimestamp()

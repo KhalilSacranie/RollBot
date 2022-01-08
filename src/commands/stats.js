@@ -10,17 +10,28 @@ module.exports = {
 
         try {
             if (args[0] === 'update') {
-                if (message.author.id === (ownerID || '460200007522320394')) {
-                    if (args[1]) {
-                        var newLink = args[1];
-                        sheetData.link = newLink;
-                        await sheetData.save();
+                if (message.author.id === '460200007522320394' || message.author.id === '543084123460337675') {
+                    var newLink = args[1];
 
-                        message.reply(`The new stat sheet is ${sheetData.link}`);
-                        console.log(`${message.author.username} update the stats to ${sheetData.link}.`);
+                    if (!args[1]) return message.reply('Please enter the new statsheet\'s https.');
+
+                    if (!sheetData) {
+                        let sheet = await sheetsModel.create({
+                            sheetID : 'statSheet',
+                            link : newLink,
+                        });
+                        await sheet.save();
+
+                        message.reply(`The new stat sheet is ${sheet.link}`);
+                        console.log(`${message.author.username} update the stats to ${sheet.link}.`);
 
                     } else {
-                        message.reply('Please enter the new statsheet\' https.');
+                        let sheet = await sheetsModel.findOneAndUpdate({sheetID: 'statSheet'}, {link: newLink});
+                        await sheet.save();
+
+                        message.reply(`The new stat sheet is ${newLink}`);
+                        console.log(`${message.author.username} update the stats to ${newLink}.`);
+
                     }
 
                 } else {

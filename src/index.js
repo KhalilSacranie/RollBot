@@ -26,6 +26,16 @@ client.once('ready', async () => {
     client.channels.cache.get('901549373173948427').send('<@543084123460337675> Bot is now online.');
 });
 
+mongoose.connect(srv, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useFindAndModify: false,
+}).then(() => {
+    console.log('Connected to the database.')
+}).catch((err) => {
+    console.error(err)
+});
+
 client.on('messageCreate', (message) => {
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -65,16 +75,8 @@ client.on('messageCreate', (message) => {
         
     } 
 
-});
+    message.reply('Mr Meow is Supreme!');
 
-mongoose.connect(srv, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    // useFindAndModify: false,
-}).then(() => {
-    console.log('Connected to the database.')
-}).catch((err) => {
-    console.error(err)
-})
+});
 
 client.login(token);
