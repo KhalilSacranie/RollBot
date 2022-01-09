@@ -2,6 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'roll',
+    description: 'Rolls a specified number of dice a certain number of times.',
     execute(date, message, args, client) {
         function getRandomIntInclusive(max) {
             return Math.floor(Math.random() * (max)) + 1;
