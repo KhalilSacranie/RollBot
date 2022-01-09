@@ -1,0 +1,27 @@
+{
+  "name": "rollbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhalilSacranie/RollBot.git"
+  },
+  "keywords": [],
+  "author": "Khalil Sacranie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhalilSacranie/RollBot/issues"
+  },
+  "homepage": "https://github.com/KhalilSacranie/RollBot#readme",
+  "dependencies": {
+    "discord.js": "^13.5.1",
+    "dotenv": "^10.0.0",
+    "fs": "^0.0.1-security",
+    "mongoose": "^6.1.5",
+    "nodemon": "^2.0.15"
+  }
+}
