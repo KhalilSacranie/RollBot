@@ -4,19 +4,18 @@ module.exports = {
     name: 'roll',
     description: 'Rolls a specified number of dice a certain number of times.',
     execute(date, message, args, client) {
-        function getRandomIntInclusive(max) {
+        function GetRandom(max) {
             return Math.floor(Math.random() * (max)) + 1;
         }
 
-        var a = new Array(args[0]);
-        for (var i = 0; i < args[0]; i++) {
-            a[i] = i + 1;
-        }
-        for (var i = 0; i < a.length; i++) {
-            let num1 = args[1];
-            if (!num1) return message.reply("Please enter how many faces the dice will have.");
+        const noDice = args[0];
+        const faces = args[1];
 
-            const answer = String(getRandomIntInclusive(num1));
+        if (!faces) return message.reply("Please include the number of dice and the number of faces.");
+        if (noDice > 20) return message.reply("You can not roll more than 20 dice at a single time.");
+
+        for (let i = 0; i < noDice; i++) {
+            const answer = String(GetRandom(faces));
 
             const Embed = new MessageEmbed()
                 .setColor(message.member.displayHexColor)
