@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start src/index.js"
+    "start": "pm2 start src/index.js",
+    "restart": "pm2 restart src/index.js"
   },
   "repository": {
     "type": "git",
