@@ -10,10 +10,6 @@ module.exports = {
                 .setTitle('RollBot\'s Github Repo')
                 .setColor(message.guild.me.displayHexColor)
                 .setDescription("https://github.com/KhalilSacranie/RollBot")
-                .addField("License", "\u200b")
-                .addField("MIT License", "\u200b")
-                .addField("\u200b", "\u200b")
-                .addField("Copyright (c) 2022 Khalil Sacranie", "\u200b")
                 .setThumbnail(client.user.displayAvatarURL())
                 .setTimestamp()
 
