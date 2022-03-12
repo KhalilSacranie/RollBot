@@ -1,8 +1,8 @@
 const sheetModel = require('../models/sheetSchema');
 
 module.exports = {
-    name: 'stats_update',
-    description: 'Updates the stat-sheet.',
+    name: 'spells_update',
+    description: 'Updates the spell-sheet.',
     permissions: ['Admin'],
     async execute(date, message, args, client) {
         if (message.author.id != '543084123460337675') return message.reply('You don\'t have permission to use this command.');
@@ -11,23 +11,23 @@ module.exports = {
         const newLink = args[0];
 
         try {
-            statSheet = await sheetModel.findOne({ sheetID: 'statSheet' });
+            statSheet = await sheetModel.findOne({ sheetID: 'spellSheet' });
             if (!statSheet) {
                 let sheet = await sheetModel.create({
-                    sheetID: 'statSheet',
+                    sheetID: 'spellSheet',
                     link: newLink,
                 });
                 await sheet.save();
 
             } else {
-                let sheet = await sheetModel.findOne({ sheetID: 'statSheet' }, { link: newLink });
+                let sheet = await sheetModel.findOne({ sheetID: 'spellSheet' }, { link: newLink });
                 await sheet.save();
 
             }
 
             await client.channels.cache.get('929529731194450021').send(`\`\`\`${message.author.id} updated the stat-sheet to \`${newLink}\`\n${date}\`\`\``);
-            console.log('The new stat-sheet is ' + newLink);
-            message.reply('The new stat-sheet is ' + newLink);
+            console.log('The new spell-sheet is ' + newLink);
+            message.reply('The new spell-sheet is ' + newLink);
 
         } catch (err) {
             console.error(err);
