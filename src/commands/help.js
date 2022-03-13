@@ -4,7 +4,7 @@ const fs = require('fs');
 module.exports = {
     name: 'help',
     description: 'Shows all available commands and their uses.',
-    async execute(date, message, args, client) {
+    async execute(client, prisma, date, message, args, prefix, ownerID) {
         try {
             if (!args[0]) {
                 const helpEmbed = new MessageEmbed()

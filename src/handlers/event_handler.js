@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports = async (client) => {
+module.exports = async (client, prisma) => {
     const ts = new Date();
     const date = `${ts.getFullYear()}:${ts.getMonth()}:${ts.getDate()}:${ts.getHours()}:${ts.getMinutes()}:${ts.getSeconds()}`;
     
@@ -10,7 +10,7 @@ module.exports = async (client) => {
         for (const file of event_files) {
             const event = require(`../events/${dirs}/${file}`);
             const event_name = file.split('.')[0];
-            client.on(event_name, event.bind(null, client, date));
+            client.on(event_name, event.bind(null, client, prisma, date));
         }
     }
 

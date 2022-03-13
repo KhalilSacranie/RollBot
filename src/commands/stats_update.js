@@ -1,26 +1,37 @@
-const sheetModel = require('../models/sheetSchema');
-
 module.exports = {
     name: 'stats_update',
     description: 'Updates the stat-sheet.',
     permissions: ['Admin'],
-    async execute(date, message, args, client) {
+    async execute(client, prisma, date, message, args, prefix, ownerID) {
         if (message.author.id != '543084123460337675') return message.reply('You don\'t have permission to use this command.');
         if (!args[0]) return message.reply('Please enter a new link');
 
         const newLink = args[0];
 
         try {
-            statSheet = await sheetModel.findOne({ sheetID: 'statSheet' });
-            if (!statSheet) {
-                let sheet = await sheetModel.create({
+            let statSheet = await prisma.sheetmodels.findUnique({
+                where: {
                     sheetID: 'statSheet',
-                    link: newLink,
+                },
+            });
+
+            if (!statSheet) {
+                statSheet = await prisma.sheetmodels.create({
+                    data: {
+                        sheetID: 'statSheet',
+                        link: newLink,
+                    },
                 });
-                await sheet.save();
 
             } else {
-                await sheetModel.findOneAndUpdate({ sheetID: 'statSheet' }, { link: newLink });
+                statSheet = await prisma.sheetmodels.update({
+                    where: {
+                        sheetID: 'statSheet',
+                    },
+                    data: {
+                        link: newLink,
+                    },
+                });
             }
 
             await client.channels.cache.get('929529731194450021').send(`\`\`\`${message.author.id} updated the stat-sheet to \`${newLink}\`\n${date}\`\`\``);

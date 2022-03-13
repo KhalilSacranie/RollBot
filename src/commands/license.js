@@ -5,7 +5,7 @@ module.exports = {
     description: 'Shows the Bot\'s license and repo',
     aliases: ['repo'],
     permissions: ['None'],
-    async execute(date, message, args, client) {
+    async execute(client, prisma, date, message, args, prefix, ownerID) {
         try {
             const data = fs.readFileSync('./LICENSE', 'utf-8');
             const license = `\`\`\`${data}\`\`\`RollBot's Repository: https://github.com/KhalilSacranie/RollBot.com`;
