@@ -5,7 +5,7 @@ module.exports = {
     name: 'profile',
     description: 'Displays player specific stats',
     aliases: ['me', 'p'],
-    async execute(date, message, args, client) {
+    async execute(client, prisma, date, message, args, prefix, ownerID) {
         // const canvas = createCanvas(1055, 1174);
         // const context = canvas.getContext('2d');
 

@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'roll',
     description: 'Rolls a specified number of dice a certain number of times.',
-    execute(date, message, args, client) {
+    execute(client, prisma, date, message, args, prefix, ownerID) {
         function GetRandom(max) {
             return Math.floor(Math.random() * (max)) + 1;
         }

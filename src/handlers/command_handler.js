@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports = async (client) => {
+module.exports = async (client, prisma) => {
     filter = file => file.endsWith('.js')
 
     const command_files = fs.readdirSync('src/commands/').filter(filter);

@@ -2,7 +2,7 @@ require ('dotenv').config({ path: '.env' });
 const prefix = process.env.PREFIX;
 const ownerID = process.env.OWNERID;
 
-module.exports = async (client, date, message) => {
+module.exports = async (client, prisma, date, message) => {
     
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -12,5 +12,5 @@ module.exports = async (client, date, message) => {
     const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
     if (!command) return message.reply('Command was not found');
 
-    if (command) command.execute(date, message, args, client, prefix, ownerID);
+    if (command) command.execute(client, prisma, date, message, args, prefix, ownerID);
 }
