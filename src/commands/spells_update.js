@@ -20,9 +20,7 @@ module.exports = {
                 await sheet.save();
 
             } else {
-                let sheet = await sheetModel.findOne({ sheetID: 'spellSheet' }, { link: newLink });
-                await sheet.save();
-
+                await sheetModel.findOneAndUpdate({ sheetID: 'spellSheet' }, { link: newLink });
             }
 
             await client.channels.cache.get('929529731194450021').send(`\`\`\`${message.author.id} updated the stat-sheet to \`${newLink}\`\n${date}\`\`\``);
