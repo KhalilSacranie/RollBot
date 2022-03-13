@@ -2,10 +2,12 @@
   "name": "rollbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
     "start": "pm2 start src/index.js",
-    "restart": "pm2 restart src/index.js"
+    "restart": "pm2 restart src/index.js",
+    "stop": "pm2 stop src/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/KhalilSacranie/RollBot#readme",
   "dependencies": {
+    "canvas": "^2.9.0",
     "discord.js": "^13.5.1",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
