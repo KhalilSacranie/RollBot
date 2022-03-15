@@ -9,7 +9,12 @@ datasource db {
 }
 
 model sheetmodels {
-  id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
   sheetID String  @unique
-  link  String?
+  link    String?
+}
+
+model Users {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  characterName String
 }
