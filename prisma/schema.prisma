@@ -8,13 +8,65 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model sheetmodels {
+model Sheetmodels {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   sheetID String  @unique
   link    String?
 }
 
 model Users {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  characterName String
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  player String  @unique
+  name   String @unique
+  level Int
+  XP Int
+  strength Int
+  strBase Int
+  strMod Int
+  strProf Int
+  strItem Int
+  athletics Int
+  dexterity Int
+  dexBase Int
+  dexMod Int
+  dexProf Int
+  dexItem Int
+  acrobatics Int
+  sleightOfHand Int
+  stealth Int
+  constitution Int
+  conBase Int
+  conMod Int
+  conProf Int
+  conItem Int
+  con Int
+  intelligence Int
+  intBase Int
+  intMod Int
+  intProf Int
+  intItem Int
+  arcana Int
+  history Int
+  investigation Int
+  nature Int
+  religion Int
+  wisdom Int
+  wisBase Int
+  wisMod Int
+  wisProf Int
+  wisItem Int
+  animalHandling Int
+  insight Int
+  medicine Int
+  perception Int
+  survival Int
+  charisma Int
+  chaBase Int
+  chaMod Int
+  chaProf Int
+  chaItem Int
+  deception Int
+  intimidation Int
+  performance Int
+  persuasion Int
 }

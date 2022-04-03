@@ -4,7 +4,6 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
     name: 'profile',
     description: 'Displays player specific stats',
-    aliases: ['me', 'p'],
     async execute(client, prisma, date, message, args, prefix, ownerID) {
         // const canvas = createCanvas(1055, 1174);
         // const context = canvas.getContext('2d');
@@ -17,11 +16,6 @@ module.exports = {
 
         // const attachment = new MessageAttachment(canvas.toBuffer(), 'profile-image.png');
         // message.channel.send({ files: [attachment] });
-
-        const profile = `
-\`\`\`${message.member.displayName}
-Class: ${1}\`\`\`
-        `
 
         message.channel.send(profile)        
     }

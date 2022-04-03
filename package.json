@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/KhalilSacranie/RollBot#readme",
   "dependencies": {
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.11.0",
     "canvas": "^2.9.0",
     "discord.js": "^13.5.1",
     "dotenv": "^10.0.0",
@@ -30,6 +30,6 @@
     "pm2": "^5.2.0"
   },
   "devDependencies": {
-    "prisma": "^3.10.0"
+    "prisma": "^3.11.0"
   }
 }
